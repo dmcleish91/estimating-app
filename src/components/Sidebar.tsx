@@ -52,7 +52,7 @@ function Sidebar() {
               </TooltipTrigger>
               <TooltipContent side='right'>Proposals</TooltipContent>
             </Tooltip>
-            <Tooltip>
+            {/* <Tooltip>
               <TooltipTrigger asChild>
                 <NavLink
                   to='#'
@@ -62,11 +62,11 @@ function Sidebar() {
                 </NavLink>
               </TooltipTrigger>
               <TooltipContent side='right'>Customers</TooltipContent>
-            </Tooltip>
+            </Tooltip> */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <NavLink
-                  to='analytics'
+                  to='#'
                   className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'>
                   <LineChart className='h-5 w-5' />
                   <span className='sr-only'>Analytics</span>
@@ -79,7 +79,7 @@ function Sidebar() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <NavLink
-                  to='settings'
+                  to='#'
                   className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'>
                   <Settings className='h-5 w-5' />
                   <span className='sr-only'>Settings</span>

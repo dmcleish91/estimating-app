@@ -42,7 +42,7 @@ function Titlebar() {
         <DropdownMenuTrigger asChild>
           <Button variant='outline' size='icon' className='overflow-hidden rounded-full'>
             <img
-              src='/src/assets/placeholder-user.png'
+              src='/assets/placeholder-user.png'
               width={36}
               height={36}
               alt='Avatar'

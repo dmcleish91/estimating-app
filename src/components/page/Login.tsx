@@ -6,7 +6,9 @@ import { Input } from '../ui/input';
 
 function Login() {
   return (
-    <Card className='mx-auto max-w-sm'>
+    <Card
+      className='mx-auto h-fit max-w-sm'
+      style={{ marginTop: 'calc(100vh / 4)', marginBottom: 'auto' }}>
       <CardHeader>
         <CardTitle className='text-2xl'>Login</CardTitle>
         <CardDescription>Enter your email below to login to your account</CardDescription>

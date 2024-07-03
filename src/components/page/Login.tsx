@@ -5,7 +5,7 @@ import { Input } from '../ui/input';
 
 export function Login() {
   return (
-    <div className='xl:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] p-8'>
+    <div className='w-full h-full xl:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] xl:overflow-y-hidden'>
       <div className='flex items-center justify-center py-12 h-full'>
         <div className='mx-auto grid w-[350px] gap-6'>
           <div className='grid gap-2 text-center'>
@@ -38,7 +38,7 @@ export function Login() {
             </Button>
           </div>
           <div className='mt-4 text-center text-sm'>
-            Don&apos;t have an account?{' '}
+            n-h-Don&apos;t have an account?{' '}
             <Link to='#' className='underline'>
               Sign up
             </Link>

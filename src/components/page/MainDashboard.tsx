@@ -9,7 +9,7 @@ import {
   MoreVertical,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -44,6 +44,7 @@ import {
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '../ui/scroll-area';
+import { Link } from 'react-router-dom';
 
 export function MainDashboard() {
   return (
@@ -61,7 +62,9 @@ export function MainDashboard() {
                   </CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button>Create New Order</Button>
+                  <Link className={buttonVariants()} to={'create/proposal'}>
+                    Create New Order
+                  </Link>
                 </CardFooter>
               </Card>
               <Card x-chunk='dashboard-05-chunk-1'>

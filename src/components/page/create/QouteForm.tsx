@@ -4,15 +4,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Plus, SquareCheckBig, Text } from 'lucide-react';
 
 import { Label } from '@radix-ui/react-label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@radix-ui/react-checkbox';
+import Stars from '@/components/ui/starrating';
 
 function QouteForm() {
   return (
@@ -22,18 +16,7 @@ function QouteForm() {
           <p className='text-4xl font-bold p-2'>Proposal Details</p>
           <div className='flex flex-row items-center justify-between gap-4 max-w-[650px] pr-4'>
             <p className='font-semibold'>Rate opportunity</p>
-            <Select>
-              <SelectTrigger className='w-[180px] h-8'>
-                <SelectValue placeholder='Unlikely' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='Unlikely'>Unlikely</SelectItem>
-                <SelectItem value='maybe'>Maybe</SelectItem>
-                <SelectItem value='likely'>Likely</SelectItem>
-                <SelectItem value='very likely'>Very Likely</SelectItem>
-                <SelectItem value='certain'>Certain</SelectItem>
-              </SelectContent>
-            </Select>
+            <Stars iconSize='18' />
           </div>
         </div>
         <div className='flex flex-row gap-4 w-full p-4'>

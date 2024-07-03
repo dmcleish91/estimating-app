@@ -8,9 +8,7 @@ function App() {
       <Sidebar />
       <div className='flex flex-col w-full h-screen'>
         <Titlebar />
-        <div className='flex flex-grow'>
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Input } from '../ui/input';
 
 export function Login() {
   return (
-    <div className='w-full h-full xl:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] xl:overflow-y-hidden p-8'>
+    <div className='max-w-[2360px] mx-auto h-full xl:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] p-8'>
       <div className='flex items-center justify-center py-12 h-full'>
         <div className='mx-auto grid w-[350px] gap-6'>
           <div className='grid gap-2 text-center'>
@@ -49,8 +49,8 @@ export function Login() {
         <img
           src='/assets/placeholder.svg'
           alt='Image'
-          height='1920'
-          width='1080'
+          height='2560'
+          width='1400'
           className='h-full w-full object-cover dark:brightness-[0.2] dark:grayscale'
         />
       </div>

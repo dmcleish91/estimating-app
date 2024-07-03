@@ -14,7 +14,7 @@ function Sidebar() {
         <aside className='hidden w-14 flex-col h-full border-r bg-background sm:flex'>
           <nav className='flex flex-col items-center gap-4 px-2 sm:py-4'>
             <Link
-              to='#'
+              to='login'
               className='group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base'>
               <Package2 className='h-4 w-4 transition-all group-hover:scale-110' />
               <span className='sr-only'>Acme Inc</span>
@@ -52,7 +52,7 @@ function Sidebar() {
               </TooltipTrigger>
               <TooltipContent side='right'>Proposals</TooltipContent>
             </Tooltip>
-            <Tooltip>
+            {/* <Tooltip>
               <TooltipTrigger asChild>
                 <NavLink
                   to='#'
@@ -62,11 +62,11 @@ function Sidebar() {
                 </NavLink>
               </TooltipTrigger>
               <TooltipContent side='right'>Customers</TooltipContent>
-            </Tooltip>
+            </Tooltip> */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <NavLink
-                  to='analytics'
+                  to='#'
                   className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'>
                   <LineChart className='h-5 w-5' />
                   <span className='sr-only'>Analytics</span>
@@ -79,7 +79,7 @@ function Sidebar() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <NavLink
-                  to='settings'
+                  to='#'
                   className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'>
                   <Settings className='h-5 w-5' />
                   <span className='sr-only'>Settings</span>

@@ -5,8 +5,8 @@ import { Input } from '../ui/input';
 
 export function Login() {
   return (
-    <div className='flex flex-row w-full'>
-      <div className='flex items-center justify-center py-12 w-1/2'>
+    <div className='xl:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] p-8'>
+      <div className='flex items-center justify-center py-12 h-full'>
         <div className='mx-auto grid w-[350px] gap-6'>
           <div className='grid gap-2 text-center'>
             <h1 className='text-3xl font-bold'>Login</h1>
@@ -45,7 +45,7 @@ export function Login() {
           </div>
         </div>
       </div>
-      <div className='hidden bg-muted lg:block w-1/2'>
+      <div className='hidden bg-muted xl:block'>
         <img
           src='/assets/placeholder.svg'
           alt='Image'

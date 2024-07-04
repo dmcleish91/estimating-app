@@ -27,9 +27,13 @@ function Titlebar() {
     navigate('/login', { replace: true });
   }
 
+  if (!user) {
+    return null;
+  }
+
   return (
     <header className='flex flex-row h-14 items-center gap-4 border-b bg-background px-4 py-2 sm:h-auto sm:border-0 sm:bg-transparent sm:px-6'>
-      {user && <Breadcrumbs />}
+      <Breadcrumbs />
       <div className='relative ml-auto flex-1 md:grow-0'>
         <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground' />
         <Input
@@ -42,7 +46,7 @@ function Titlebar() {
         <DropdownMenuTrigger asChild>
           <Button variant='outline' size='icon' className='overflow-hidden rounded-full'>
             <img
-              src='/assets/placeholder-user.png'
+              src='/assets/user-picture.jpg'
               width={36}
               height={36}
               alt='Avatar'
@@ -53,8 +57,12 @@ function Titlebar() {
         <DropdownMenuContent align='end'>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => navigate('/settings')}>
+            Settings
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => navigate('/settings/organization')}>
+            Organization
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           {user ? (
             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>

@@ -1,9 +1,28 @@
 import { Label } from '@radix-ui/react-dropdown-menu';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import { useAuth } from '@/lib/hooks/useAuth';
+import React from 'react';
 
 export function Login() {
+  const [email, setEmail] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  function handleEmail(value: string) {
+    setEmail(value);
+  }
+
+  function handlePassword(value: string) {
+    setPassword(value);
+  }
+
+  function handleLogin() {
+    login({ name: email.split('@')[0] });
+    navigate('/', { replace: true });
+  }
   return (
     <div className='max-w-[2360px] mx-auto h-full xl:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] p-8'>
       <div className='flex items-center justify-center py-12 h-full'>
@@ -17,7 +36,14 @@ export function Login() {
           <div className='grid gap-4'>
             <div className='grid gap-2'>
               <Label>Email</Label>
-              <Input id='email' type='email' placeholder='m@example.com' required />
+              <Input
+                id='email'
+                type='email'
+                placeholder='m@example.com'
+                value={email}
+                onChange={(e) => handleEmail(e.target.value)}
+                required
+              />
             </div>
             <div className='grid gap-2'>
               <div className='flex items-center'>
@@ -28,9 +54,15 @@ export function Login() {
                   Forgot your password?
                 </Link>
               </div>
-              <Input id='password' type='password' required />
+              <Input
+                id='password'
+                type='password'
+                value={password}
+                onChange={(e) => handlePassword(e.target.value)}
+                required
+              />
             </div>
-            <Button type='submit' className='w-full'>
+            <Button type='submit' className='w-full' onClick={handleLogin}>
               Login
             </Button>
             <Button variant='outline' className='w-full'>

@@ -7,4 +7,7 @@ npm run build
 echo "Deploying files to server..."
 scp -r dist/* bunintheoven:/var/www/estimate-react-front/
 
+echo "Deleting distribution folder"
+rm -rf dist
+
 echo "Done!"

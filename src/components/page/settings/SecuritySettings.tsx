@@ -7,12 +7,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-
 import { Input } from '@/components/ui/input';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 function SecuritySettings() {
+  const [password, setPassword] = React.useState('');
+
+  function handlePasswordChange(value: string) {
+    setPassword(value);
+  }
+
   return (
     <div className='flex min-h-fit w-full flex-col'>
       <main className='flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10'>
@@ -35,42 +40,52 @@ function SecuritySettings() {
           <div className='grid gap-6'>
             <Card x-chunk='dashboard-04-chunk-1'>
               <CardHeader>
-                <CardTitle>Store Name</CardTitle>
+                <CardTitle>Change Password</CardTitle>
                 <CardDescription>
-                  Used to identify your store in the marketplace.
+                  Enter a new password and ensure it is strong enough before saving.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form>
-                  <Input placeholder='Store Name' />
+                  <Input
+                    placeholder='New Password'
+                    type='password'
+                    value={password}
+                    maxLength={30}
+                    onChange={(e) => handlePasswordChange(e.target.value)}
+                  />
+                  <PasswordStrengthIndicator password={password} />
                 </form>
               </CardContent>
-              <CardFooter className='border-t px-6 py-4'>
+              <CardFooter className='border-t px-6 py-4 justify-end'>
                 <Button>Save</Button>
+              </CardFooter>
+            </Card>
+
+            <Card x-chunk='dashboard-04-chunk-1'>
+              <CardHeader>
+                <CardTitle>Multi-factor authentication</CardTitle>
+                <CardDescription>
+                  Require an extra security challenge when logging in. If you are unable
+                  to pass this challenge, you will have the option to recover your account
+                  via email.
+                </CardDescription>
+              </CardHeader>
+              <CardFooter className='border-t px-6 py-4 justify-end'>
+                <Button>Enable</Button>
               </CardFooter>
             </Card>
             <Card x-chunk='dashboard-04-chunk-2'>
               <CardHeader>
-                <CardTitle>Plugins Directory</CardTitle>
+                <CardTitle>Log out of all devices</CardTitle>
                 <CardDescription>
-                  The directory within your project, in which your plugins are located.
+                  Log out of all active sessions across all devices, including your
+                  current session. It may take up to 30 minutes for other devices to be
+                  logged out.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <form className='flex flex-col gap-4'>
-                  <Input placeholder='Project Name' defaultValue='/content/plugins' />
-                  <div className='flex items-center space-x-2'>
-                    <Checkbox id='include' defaultChecked />
-                    <label
-                      htmlFor='include'
-                      className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
-                      Allow administrators to change the directory.
-                    </label>
-                  </div>
-                </form>
-              </CardContent>
-              <CardFooter className='border-t px-6 py-4'>
-                <Button>Save</Button>
+              <CardFooter className='border-t px-6 py-4 justify-end'>
+                <Button>Log out all</Button>
               </CardFooter>
             </Card>
           </div>
@@ -80,3 +95,75 @@ function SecuritySettings() {
   );
 }
 export default SecuritySettings;
+
+interface PasswordStrengthIndicatorProps {
+  password: string;
+}
+
+function evaluatePasswordStrength(password: string) {
+  let points = 0;
+
+  if (password.length > 7) {
+    points++;
+  }
+
+  if (password.length > 11) {
+    points++;
+  }
+
+  if (password.length > 17) {
+    points++;
+  }
+
+  if (password.length === 30) {
+    points++;
+  }
+
+  if (/[A-Z]/.test(password)) {
+    points++;
+  }
+
+  if (/[a-z]/.test(password)) {
+    points++;
+  }
+
+  if (/[0-9]/.test(password)) {
+    points++;
+  }
+
+  if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    points++;
+  }
+
+  console.log(points);
+  return points;
+}
+
+function PasswordStrengthIndicator({ password }: PasswordStrengthIndicatorProps) {
+  const passwordStrength = evaluatePasswordStrength(password);
+
+  let strengthLabel;
+  let strengthColor;
+
+  if (passwordStrength <= 2) {
+    strengthLabel = 'Very Weak';
+    strengthColor = 'gray';
+  } else if (passwordStrength <= 4) {
+    strengthLabel = 'Weak';
+    strengthColor = 'red';
+  } else if (passwordStrength < 7) {
+    strengthLabel = 'Strong';
+    strengthColor = 'green';
+  } else {
+    strengthLabel = 'Very Strong';
+    strengthColor = 'green';
+  }
+
+  return (
+    <div
+      className='text-sm text-muted-foreground pt-1 pl-1'
+      style={{ color: strengthColor }}>
+      Password Strength: {strengthLabel}
+    </div>
+  );
+}

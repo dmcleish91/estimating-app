@@ -7,8 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-
+import { Badge } from '@/components/ui/badge';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
@@ -35,14 +42,17 @@ function OrganizationSettings() {
           <div className='grid gap-6'>
             <Card x-chunk='dashboard-04-chunk-1'>
               <CardHeader>
-                <CardTitle>Store Name</CardTitle>
+                <CardTitle>Invite Team Member</CardTitle>
                 <CardDescription>
-                  Used to identify your store in the marketplace.
+                  Enter the email address of the member you want to join your team
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form>
-                  <Input placeholder='Store Name' />
+                  <Input placeholder='john.snow@gmail.com' />
+                  <p className='text-sm text-muted-foreground pt-1'>
+                    0 remaing seats left
+                  </p>
                 </form>
               </CardContent>
               <CardFooter className='border-t px-6 py-4'>
@@ -51,27 +61,12 @@ function OrganizationSettings() {
             </Card>
             <Card x-chunk='dashboard-04-chunk-2'>
               <CardHeader>
-                <CardTitle>Plugins Directory</CardTitle>
-                <CardDescription>
-                  The directory within your project, in which your plugins are located.
-                </CardDescription>
+                <CardTitle>Organization</CardTitle>
+                <CardDescription>The status of your team members</CardDescription>
               </CardHeader>
               <CardContent>
-                <form className='flex flex-col gap-4'>
-                  <Input placeholder='Project Name' defaultValue='/content/plugins' />
-                  <div className='flex items-center space-x-2'>
-                    <Checkbox id='include' defaultChecked />
-                    <label
-                      htmlFor='include'
-                      className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
-                      Allow administrators to change the directory.
-                    </label>
-                  </div>
-                </form>
+                <TeamTable />
               </CardContent>
-              <CardFooter className='border-t px-6 py-4'>
-                <Button>Save</Button>
-              </CardFooter>
             </Card>
           </div>
         </div>
@@ -80,3 +75,56 @@ function OrganizationSettings() {
   );
 }
 export default OrganizationSettings;
+
+function TeamTable() {
+  const teamMembers = [
+    { name: 'John Doe', status: 'active', joinDate: '2024-05-01' },
+    { name: 'Jane Smith', status: 'invited', joinDate: '2024-05-15' },
+    { name: 'Sam Green', status: 'active', joinDate: '2024-06-01' },
+    { name: 'Chris Black', status: 'invited', joinDate: '2024-06-10' },
+    { name: 'Pat White', status: 'active', joinDate: '2024-06-20' },
+  ];
+
+  return (
+    <Card>
+      <CardHeader className='px-7'>
+        <CardTitle>Team Members</CardTitle>
+        <CardDescription>Current team members for your organization.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Join Date</TableHead>
+              <TableHead className='text-center'>Revoke</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {teamMembers.map((member, index) => (
+              <TableRow key={index} className={index % 2 === 0 ? 'bg-accent' : ''}>
+                <TableCell>
+                  <div className='font-medium'>{member.name}</div>
+                </TableCell>
+                <TableCell>
+                  <Badge
+                    className='text-xs'
+                    variant={member.status === 'active' ? 'secondary' : 'outline'}>
+                    {member.status}
+                  </Badge>
+                </TableCell>
+                <TableCell>{member.joinDate}</TableCell>
+                <TableCell className='text-center'>
+                  <Button size='sm' variant='destructive'>
+                    Remove
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+  );
+}
